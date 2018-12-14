@@ -4,7 +4,9 @@
 #
 version: 2
 jobs:
+  # build is a required step
   build:
+    # build in either docker or our own machine; docker is faster
     docker:
       # specify the version you desire here
       - image: circleci/node:8.12.0
@@ -17,6 +19,7 @@ jobs:
     working_directory: ~/repo
 
     steps:
+      # get code from github for build
       - checkout
 
       # Download and cache dependencies
@@ -49,12 +52,10 @@ jobs:
               npm run build
               npm start
             EOF
+
 workflows:
   version: 2
   deploy_workflow:
     jobs:
-      - build:
-      - deploy:
-          requires:
-          - build
+      - deploy
 
