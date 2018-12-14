@@ -34,31 +34,6 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
         
 
-# Node/JS CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
-version: 2
-jobs:
-  build:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:8.12.0
-    steps:
-      # get code from git
-      - checkout
-      # use cache if there
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      # install node_module dependencies
-      - run:
-          name: npm-install
-          command: npm install
-      # save to cache
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
   deploy:
     docker:
       # specify the version you desire here
@@ -74,5 +49,12 @@ jobs:
               npm run build
               npm start
             EOF
-
+workflows:
+  version: 2
+  deploy_workflow:
+    jobs:
+      - build:
+      - deploy:
+          requires:
+          - build
 
