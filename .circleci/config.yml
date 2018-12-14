@@ -42,6 +42,9 @@ jobs:
       # specify the version you desire here
       - image: circleci/node:8.12.0
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "11:c0:e1:31:ec:fd:77:8c:72:cc:59:cc:0e:7e:b4:0a"      
       - run:
           command: |
             echo deploy is running!
