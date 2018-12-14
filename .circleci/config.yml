@@ -52,6 +52,7 @@ jobs:
               rm -rf BeaganTest
               git clone https://github.com/ct-john/BeaganTest.git
               cd BeaganTest
+              npm install
               npm run build
               npm start
             EOF
