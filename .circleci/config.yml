@@ -45,7 +45,7 @@ jobs:
       - run:
           command: |
             echo deploy is running!
-            ssh -oStrictHostKeyChecking=no ec2-user@3.16.125.246 << EOF
+            ssh -oStrictHostKeyChecking=no ec2-user@18.217.185.213 << EOF
               rm -rf BeaganTest
               git clone https://github.com/ct-john/BeaganTest.git
               cd BeaganTest
