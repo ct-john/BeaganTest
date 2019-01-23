@@ -21,6 +21,8 @@ jobs:
     steps:
       # get code from github for build
       - checkout
+      run: echo "here i am moe"
+
 
       # Download and cache dependencies
       - restore_cache:
@@ -48,11 +50,10 @@ jobs:
       - run:
           command: |
             echo deploy is running!
+
             ssh -oStrictHostKeyChecking=no ec2-user@18.217.185.213 << EOF
               rm -rf BeaganTest
-              git fetch --all
-              git checkout "${CIRCLE_BRANCH}"
-              git pull origin "${CIRCLE_BRANCH}"
+              git clone https://github.com/ct-john/BeaganTest.git
               cd BeaganTest
               npm install
               npm run build
@@ -69,7 +70,7 @@ workflows:
           filters:
               branches:
                 only:
-                  - develop
+                  - master
       - deploy_my_test:
           requires:
               - hold

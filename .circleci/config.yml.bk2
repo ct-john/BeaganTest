@@ -50,7 +50,9 @@ jobs:
             echo deploy is running!
             ssh -oStrictHostKeyChecking=no ec2-user@18.217.185.213 << EOF
               rm -rf BeaganTest
-              git clone https://github.com/ct-john/BeaganTest.git
+              git fetch --all
+              git checkout "${CIRCLE_BRANCH}"
+              git pull origin "${CIRCLE_BRANCH}"
               cd BeaganTest
               npm install
               npm run build
@@ -67,7 +69,7 @@ workflows:
           filters:
               branches:
                 only:
-                  - master
+                  - develop
       - deploy_my_test:
           requires:
               - hold
