@@ -21,8 +21,8 @@ jobs:
     steps:
       # get code from github for build
       - checkout
-      - run: echo "here i am moe"
-
+      - run: 
+          command: echo "here i am moe"
 
       # Download and cache dependencies
       - restore_cache:
