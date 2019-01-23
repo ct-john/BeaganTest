@@ -62,11 +62,12 @@ workflows:
   version: 2
   deploy_workflow:
     jobs:
-      - build
       - hold:
           type: approval
-          requires:
-            - build 
+          filters:
+              branches:
+                only:
+                  - master
       - deploy_my_test:
           requires:
               - hold
