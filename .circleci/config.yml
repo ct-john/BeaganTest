@@ -52,6 +52,7 @@ jobs:
             echo deploy is running!
 
             ssh -oStrictHostKeyChecking=no ec2-user@18.217.185.213 << EOF
+              source ~/.bashrc
               rm -rf BeaganTest
               git fetch --all
               git checkout "${CIRCLE_BRANCH}"
