@@ -4,7 +4,7 @@ const layoutStyle = {
   margin: 20,
   padding: 20,
   border: '1px solid #DDD',
-  backgroundColor: '#FFA07A'
+  backgroundColor: '#E8F6F3'
 }
 
 const Layout = (props) => (
