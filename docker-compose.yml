@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - type: volume
+        source: .
+        target: /app
+volumes:
+  app:
